@@ -64,7 +64,7 @@ public class CompanyService {
                             @PathParam("sold")int sold){
         return new CarBusiness().updateCar(id,brand,model,car_year,color,additional,sold);
     }
-
+/*
     //http://localhost:8080/api/receipts
     @GET
     @Path("receipts")
@@ -109,7 +109,7 @@ public class CompanyService {
                                 @PathParam("car_id")int car_id,
                                 @PathParam("date_of_purchase")Date date_of_purchase){
         return new ReceiptBusiness().updateReceipt(receipt_id, buyer_id, car_id, date_of_purchase);
-    }
+    }*/
 
 
 
