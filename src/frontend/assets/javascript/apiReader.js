@@ -1,11 +1,11 @@
-//Testing getallcars
-const api_url = "http://localhost:8080/api/cars";
+console.log(UPDATE_CAR + " text");
+
 
 // Defining async function 
-async function getapi() { 
+async function getCars(url) { 
     
     // Storing response 
-    const response = await fetch(api_url,{
+    const response = await fetch(url,{
         
         method: "GET",
         headers: {
@@ -29,7 +29,7 @@ async function getapi() {
     show(data); 
 } 
 // Calling that async function 
-getapi(api_url); 
+//getAllCars(GET_ALL_CARS); 
   
 // Function to hide the loader 
 function hideloader() { 
