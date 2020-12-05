@@ -6,6 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class ReceiptBusiness {
@@ -58,13 +59,16 @@ public class ReceiptBusiness {
         return jsonArray.toString(2);
     }
 
-    //TODO
-    //public String getFilteredCar
+    public String insertReceipt(int buyer_id, int car_id, String date_of_purchase) throws Exception{
 
-    public String insertReceipt(int buyer_id, int car_id, Date date_of_purchase){
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date parsed = new java.sql.Date(format.parse(date_of_purchase).getTime());
 
-        Receipt receipt = new DataLayer().insertReceipt(buyer_id, car_id, date_of_purchase);
+        Receipt receipt = new DataLayer().insertReceipt(buyer_id, car_id, parsed);
 
+        if(receipt == null){
+            return new JSONObject().put("error","Insert receipt has an issue").toString();
+        }
         //TODO
         //VALIDATION
 
@@ -85,8 +89,13 @@ public class ReceiptBusiness {
 
     }
 
-    public String updateReceipt(int receipt_id,int buyer_id, int car_id, Date date_of_purchase){
-        Receipt receipt = new DataLayer().updateReceipt(receipt_id,buyer_id,car_id,date_of_purchase);
+    public String updateReceipt(int receipt_id,int buyer_id, int car_id, String date_of_purchase) throws Exception{
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date parsed = new java.sql.Date(format.parse(date_of_purchase).getTime());
+
+
+        Receipt receipt = new DataLayer().updateReceipt(receipt_id,buyer_id,car_id,parsed);
 
         //TODO
         //VALIDATION
