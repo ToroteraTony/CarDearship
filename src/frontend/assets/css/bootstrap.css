@@ -67,7 +67,7 @@ body {
   line-height: 1.5;
   color: #343a40;
   text-align: left;
-  background-color: #fff;
+  background-color: #262627 !important;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -612,8 +612,8 @@ pre code {
 .col-xl-auto {
   position: relative;
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 0px !important;
+  padding-left: 0px !important;
 }
 
 .col {
@@ -4319,6 +4319,7 @@ input[type="button"].btn-block {
 }
 
 .navbar {
+  background-color: #222222 !important;
   position: relative;
   display: -ms-flexbox;
   display: flex;
@@ -4329,6 +4330,7 @@ input[type="button"].btn-block {
   -ms-flex-pack: justify;
   justify-content: space-between;
   padding: 0.5rem 1rem;
+  
 }
 
 .navbar .container,
@@ -4348,7 +4350,9 @@ input[type="button"].btn-block {
   padding-top: 0.300688rem;
   padding-bottom: 0.300688rem;
   margin-right: 1rem;
-  font-size: 1.32875rem;
+  font-size: 1.7rem!important;
+  font-family: 'Lobster', cursive;
+  letter-spacing: 0.15em;
   line-height: inherit;
   white-space: nowrap;
 }
@@ -4731,11 +4735,11 @@ input[type="button"].btn-block {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: #ddd  !important;
   background-clip: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.25rem;
-  margin-bottom: 1em;
+  border: 1px solid rgb(161, 25, 25) !important;
+  border-radius: 21px !important;
+  margin-bottom: 5% !important;
 }
 
 .card > hr {
@@ -5514,7 +5518,7 @@ a.badge-dark:focus, a.badge-dark.focus {
 }
 
 .list-group-item-action:hover, .list-group-item-action:focus {
-  z-index: 1;
+  z-index: 0;
   color: #495057;
   text-decoration: none;
   background-color: #f8f9fa;
@@ -5545,7 +5549,6 @@ a.badge-dark:focus, a.badge-dark.focus {
 
 .list-group-item.disabled, .list-group-item:disabled {
   color: #868e96;
-  pointer-events: none;
   background-color: #fff;
 }
 
@@ -10516,3 +10519,45 @@ table-primary, table-secondary, table-success, table-info, table-warning, table-
   font-size: 0.930125rem;
 }
 
+
+
+.div-left{
+  float: left;
+  width: 40% !important;
+  display: inline;
+  margin: 5%;
+}
+
+.div-right{
+  float: left;
+  width: 40%;
+  display: inline;
+  margin: 5%;
+}
+
+.paddington{
+  padding-bottom: 5% !important;
+}
+
+
+.clickCard{
+  position: absolute;
+  width:100%;
+  height:100%;
+  top:0px;
+  left:0px;
+}
+
+.carImage{
+  border-radius: 20px 20px 0px 0px;
+  width:100%;
+  height: 60%;
+}
+
+.centerer {
+  text-align: center !important;
+}
+
+.smallhr {
+  width: 60% !important;
+}
