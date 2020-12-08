@@ -10523,7 +10523,7 @@ table-primary, table-secondary, table-success, table-info, table-warning, table-
 
 .div-left{
   float: left;
-  width: 40% !important;
+  width: 50% !important;
   display: inline;
   margin: 5%;
 }

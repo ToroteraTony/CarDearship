@@ -185,3 +185,6 @@ function jozo() {
     };
 
 }
+
+
+console.log(sessionStorage.getItem('user'));
