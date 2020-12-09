@@ -67,7 +67,8 @@ body {
   line-height: 1.5;
   color: #343a40;
   text-align: left;
-  background-color: #262627 !important;
+  background-color: #353b48 !important;
+
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -78,11 +79,6 @@ hr {
   box-sizing: content-box;
   height: 0;
   overflow: visible;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
 }
 
 p {
@@ -361,8 +357,8 @@ template {
   display: none !important;
 }
 
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
+h1, h2, h3, h4, h6,
+.h1, .h2, .h3, .h4, .h6 {
   margin-bottom: 0.5rem;
   font-weight: 700;
   line-height: 1.2;
@@ -386,6 +382,7 @@ h4, .h4 {
 
 h5, .h5 {
   font-size: 1.32875rem;
+  font-variant: small-caps !important;
 }
 
 h6, .h6 {
@@ -2501,25 +2498,24 @@ textarea.form-control {
   }
 }
 
-.btn {
+.btna {
   display: inline-block;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 400;
-  color: #343a40;
   text-align: center;
   vertical-align: middle;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  background-color: transparent;
-  border: 1px solid transparent;
+  background-color: transparent !important;
   padding: 0.5rem 1.1rem;
-  font-size: 0.875rem;
   line-height: 1.5;
-  border-radius: 0.25rem;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  outline:none !important;
+  border: none !important;
 }
+
+
 
 @media (prefers-reduced-motion: reduce) {
   .btn {
@@ -2527,14 +2523,16 @@ textarea.form-control {
   }
 }
 
+.btn:focus, .btn:active:focus, .btn.active:focus{ 
+  outline: none ! important; 
+  outline-style: none !important;}
+
 .btn:hover {
-  color: #343a40;
   text-decoration: none;
 }
 
 .btn:focus, .btn.focus {
-  outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(69, 130, 236, 0.25);
+  outline: none !important;
 }
 
 .btn.disabled, .btn:disabled {
@@ -2562,30 +2560,9 @@ fieldset:disabled a.btn {
   border-color: #1863e6;
 }
 
-.btn-primary:focus, .btn-primary.focus {
-  color: #fff;
-  background-color: #226be8;
-  border-color: #1863e6;
-  box-shadow: 0 0 0 0.2rem rgba(97, 149, 239, 0.5);
-}
 
-.btn-primary.disabled, .btn-primary:disabled {
-  color: #fff;
-  background-color: #4582ec;
-  border-color: #4582ec;
-}
 
-.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
-.show > .btn-primary.dropdown-toggle {
-  color: #fff;
-  background-color: #1863e6;
-  border-color: #165edb;
-}
 
-.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
-.show > .btn-primary.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(97, 149, 239, 0.5);
-}
 
 .btn-secondary {
   color: #fff;
@@ -4728,6 +4705,8 @@ input[type="button"].btn-block {
 }
 
 .card {
+  color: #fff !important;
+  font-family: roboto !important;
   position: relative;
   display: -ms-flexbox;
   display: flex;
@@ -4735,11 +4714,13 @@ input[type="button"].btn-block {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #ddd  !important;
+  background-color: #2d3436  !important;
   background-clip: border-box;
-  border: 1px solid rgb(161, 25, 25) !important;
-  border-radius: 21px !important;
+  /*border: 1px solid rgb(161, 25, 25) !important;*/
+  border-radius: 8px !important;
   margin-bottom: 5% !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24) !important;
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1) !important;
 }
 
 .card > hr {
@@ -4774,10 +4755,6 @@ input[type="button"].btn-block {
   flex: 1 1 auto;
   min-height: 1px;
   padding: 1.25rem;
-}
-
-.card-title {
-  margin-bottom: 0.75rem;
 }
 
 .card-subtitle {
@@ -6436,6 +6413,7 @@ a.close.disabled {
 .carousel-inner {
   position: relative;
   width: 100%;
+  min-height: 100vh;
   overflow: hidden;
 }
 
@@ -10523,7 +10501,7 @@ table-primary, table-secondary, table-success, table-info, table-warning, table-
 
 .div-left{
   float: left;
-  width: 50% !important;
+  width: 40%;
   display: inline;
   margin: 5%;
 }
@@ -10535,8 +10513,15 @@ table-primary, table-secondary, table-success, table-info, table-warning, table-
   margin: 5%;
 }
 
+@media (max-width: 920px) {
+  .div-left, .div-right {
+    width: 90%;
+  }
+}
+
 .paddington{
-  padding-bottom: 5% !important;
+  padding-bottom: 4% !important;
+  padding-top: 4% !important;
 }
 
 
@@ -10549,9 +10534,9 @@ table-primary, table-secondary, table-success, table-info, table-warning, table-
 }
 
 .carImage{
-  border-radius: 20px 20px 0px 0px;
+  border-radius: 8px 8px 0px 0px;
   width:100%;
-  height: 60%;
+  height: 75% !important;
 }
 
 .centerer {
@@ -10560,4 +10545,98 @@ table-primary, table-secondary, table-success, table-info, table-warning, table-
 
 .smallhr {
   width: 60% !important;
+  background-color: #ddd !important;
+}
+
+
+.card:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22) !important;
+  position: relative;
+}
+
+.carousel-item {
+  height: 95vh;
+  min-height: 350px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.carousel {
+  margin-bottom: 2% !important;
+}
+
+.buyButton {
+
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  font-family: 'Roboto', sans-serif;
+
+  position: relative;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.buyButton span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.buyButton span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.buyButton:hover span {
+  padding-right: 25px;
+}
+
+.buyButton:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.buyButton:after {
+  content: "";
+  background: #0a2544;
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px!important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 0.8s
+}
+
+.buyButton:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
+}
+
+#searchTextField {
+  display: none;
+  transition: opacity 1s ease-out;
+  opacity: 0;
 }

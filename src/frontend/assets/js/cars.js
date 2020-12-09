@@ -100,6 +100,7 @@ function showAll(data) {
         var model = value.success.car.model;
         var car_year = value.success.car.car_year + "";
         var color = value.success.car.color;
+        var imgID = value.success.car.car_id;
 
         var filter = document.getElementById("searchTextField").value.toLowerCase();
 
@@ -112,16 +113,10 @@ function showAll(data) {
 
                 <a class="clickCard" href="detail.html?car_id=${value.success.car.car_id}"></a>
 
-                <img class="carImage" src="images/random_car.JPG" alt="Default Image">
-
-                <h3 class="card-header ">${brand} ${model}</h3>
+                <img class="carImage" src="images/index/${imgID}.jpg" alt="images/default-image.png">
                 
-                <div class="card-body ">
-                  <h5 class="card-title ">${brand} ${model}, ${car_year}</h5>
-                  <hr class="smallhr">
-                  <h5 class="card-title ">${car_year}</h5>
-                  <hr class="smallhr">
-                  <h5 class="card-text ">${color}</h5>
+                <div class="card-body">
+                  <h5>${brand} ${model}, ${car_year}</h5>
                 </div>
             
                   
@@ -141,50 +136,140 @@ function showAll(data) {
 function show(data) {
     const container = document.getElementById("detailParentDiv");
 
-    var value = data[0];
+   
 
+    var value = data[0];
+    document.title = `${value.success.car.brand} ${value.success.car.model}`;
+    var imgID = value.success.car.car_id;
+    var img2 = imgID + "-1";
+    var img3 = imgID + "-2";
     const content = `
 
-    
-                <div class="div-left">
-                <h2> ${value.success.car.brand} ${value.success.car.model} </h2>
+                <div class="div-left" style="margin-bottom:0%!important;">
+                    
+                    <div id="carouselExampleIndicators" class="carousel slide" style="height: 500px;" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner" role="listbox" style="min-height: 500px; margin-bottom: 0%!important;">
+                            <!-- Slide One - Set the background image for this slide in the line below -->
+                            <div class="carousel-item active" style="background-image: url('images/index/${imgID}.jpg'); height: 500px;">
+                            </div>
+                            <!-- Slide Two - Set the background image for this slide in the line below -->
+                            <div class="carousel-item" style="background-image: url('images/detail/${img2}.jpg'); height: 500px;">
+                            </div>
+                            <!-- Slide Three - Set the background image for this slide in the line below -->
+                            <div class="carousel-item" style="background-image: url('images/detail/${img3}.jpg'); height: 500px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="div-right"  style="font-family:'Montserrat', sans-serif">
+                    <h2> ${value.success.car.brand} ${value.success.car.model} </h2>
 
-                <ul class="list-group list-group-flush paddington">
-                <li class="list-group-item paddington">${value.success.car.brand} ${value.success.car.model}</li>
-                <li class="list-group-item paddington">${value.success.car.car_year}</li>
-                <li class="list-group-item paddington">${value.success.car.color}</li>
-                </ul>
+                    <ul class="list-group list-group-flush paddington text-dark">
+                        <li class="list-group-item paddington"><h6 class="mb-1">Model: </h6> ${value.success.car.brand} ${value.success.car.model}</li>
+                        <li class="list-group-item paddington"><h6 class="mb-1">Generation: </h6> ${value.success.car.car_year}</li>
+                        <li class="list-group-item paddington"><h6 class="mb-1">Color: </h6> ${value.success.car.color}</li>
+                        <li class="list-group-item paddington mb-0"><h6 class="mb-1">Additional: </h6> ${value.success.car.additional}</li>
+                    </ul>
                 </div>
 
-                <div class="div-right">
-                <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" height="auto" width="100%" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
-                      <rect width="100%" height="100%" fill="#868e96"></rect>
-                      <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
-                </svg>
-                </div>
+                <button
+                    id="${imgID}"
+                    type="button"
+                    class="btn btn-light float-right buyButton"
+                    style="margin-right: 5%; border-radius: 0 !important;"
+                    onclick="ask()"
+                    >
+                    <span>
+                        <b>BUY NOW</b>
+                    </span>
+                </button>
                      
-
-        
         `;
 
     container.innerHTML += content;
 }
 
+
+
 function jozo() {
+
+    document.getElementById("searchTextField")
+        .addEventListener("keydown", function (event) {
+            
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                document.getElementById("searchButton").click();
+            }
+        });
+
 
     document.getElementById("searchButton").onclick = function search() {
 
+        var field = document.getElementById("searchTextField");
+        var filter = document.getElementById("searchTextField").value.toLowerCase();
+        if (filter == "") {
+            field.setAttribute("style", "display:inline !important; opacity: 1!important;");
+            return;
+        }
+
         document.getElementById("carParent").innerHTML = "";
-        /*var div = document.getElementById('carParent');
-        while (div.firstChild) {
-            div.removeChild(div.firstChild);
-        }*/
 
         getCars(GET_ALL_CARS);
 
+        // MAKE THE CAROUSEL DISSAPEAR UPON SEARCH
+        var carousel = document.getElementById("carousel");
+        carousel.setAttribute("style", "display:none !important;");
+
+        // MAKE THE CARDS HAVE BETTER MARGINS
+        var cardParent = document.getElementById("carParent");
+        cardParent.setAttribute("style", "margin: 10% 10% 0 10% !important");
+
+
     };
+
+
 
 }
 
+// THIS FUNCTION MAKES THE TEXT FIELD DISSAPEAR
+function dissapear(){
+    var field = document.getElementById("searchTextField");
+    field.setAttribute("style", "display:none !important; opacity:0 !important;");
+}
 
-console.log(sessionStorage.getItem('user'));
+//window.jsPDF = require('jspdf');
+
+const pdf = new jsPDF();
+
+function ask() {
+
+
+    question = confirm("Are you sure?");
+
+    if (question){
+
+        alert("I am here");
+
+        pdf.text(100,15,"Receipt");
+        pdf.text(10,50,"Name:");
+        pdf.text(50,50,sessionStorage.getItem("fullname"));
+        pdf.text(10,70,"Object: ");
+        pdf.text(50,70,"Car");
+        pdf.text(10,80,"Brand:");
+        pdf.text(50,80,document.getElementById("brand").innerText);
+        pdf.text(10,90,"Color:");
+        pdf.text(50,90,document.getElementById("color").innerText);
+        pdf.text(10,100,"Year:");
+        pdf.text(50,100,document.getElementById("year").innerText);
+        pdf.text(10,110,"Quantity:");
+        pdf.text(50,110,"1");
+
+        pdf.save();
+    }
+}

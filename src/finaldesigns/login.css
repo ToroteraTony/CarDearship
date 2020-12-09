@@ -1,0 +1,32 @@
+#card{
+
+width: 33% !important;
+margin-bottom: auto;
+margin-top: auto;
+
+}
+
+.flex{
+
+display: flex;
+align-items: center !important;
+
+}
+
+.mg-auto{
+
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+
+@media (max-width: 768px) {
+
+#card{
+
+width: 20rem !important;
+
+}
+
+}
